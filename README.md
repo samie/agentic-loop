@@ -1,6 +1,6 @@
-# Agentic loop demo (Java + Vaadin + local inference)
+# How does an agentic loop work? 
 
-A minimal agent harness in plain Java, with a Vaadin UI on top. Ask a question and watch
+A minimal agent harness in Java, with a Vaadin UI on top. Ask a question and watch
 the agentic loop run step by step: the request, the model's tool call, your code running
 the tool, the observation going back into the conversation, and the final answer.
 
