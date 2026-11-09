@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 500" width="1180" height="500" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a5560"/>
+    </marker>
+  </defs>
+
+  <rect width="1180" height="500" fill="#ffffff"/>
+
+  <!-- User -->
+  <g data-stages="question">
+    <rect x="10" y="150" width="90" height="60" rx="10" fill="#e8f1fb" stroke="#5b8bc4" stroke-width="1.5"/>
+    <text x="55" y="185" text-anchor="middle" font-size="16" font-weight="600" fill="#24476e">User</text>
+  </g>
+
+  <!-- Conversation (agent) -->
+  <g data-stages="question request observation">
+    <text x="255" y="55" text-anchor="middle" font-size="11" font-weight="600" fill="#5f6b77" letter-spacing="1">AGENT</text>
+    <rect x="170" y="65" width="170" height="225" rx="10" fill="#f5f7fa" stroke="#9aa5b1" stroke-width="1.5"/>
+    <text x="255" y="90" text-anchor="middle" font-size="13" font-weight="600" fill="#2f3a45">Conversation</text>
+  </g>
+  <g font-size="12" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">
+    <g data-stages="request">
+      <rect x="185" y="105" width="140" height="34" rx="6" fill="#eceff2" stroke="#b5bec7"/>
+      <text x="255" y="127" fill="#3b4652">system</text>
+    </g>
+    <g data-stages="question request">
+      <rect x="185" y="147" width="140" height="34" rx="6" fill="#e8f1fb" stroke="#9fbde0"/>
+      <text x="255" y="169" fill="#24476e">user</text>
+    </g>
+    <g data-stages="request">
+      <rect x="185" y="189" width="140" height="34" rx="6" fill="#f3effa" stroke="#c2b6e0"/>
+      <text x="255" y="211" fill="#4b3d78">assistant</text>
+    </g>
+    <g data-stages="request observation">
+      <rect x="185" y="231" width="140" height="34" rx="6" fill="#fdf4e7" stroke="#e3c48e"/>
+      <text x="255" y="253" fill="#7a5414">tool</text>
+    </g>
+  </g>
+
+  <!-- LLM -->
+  <g data-stages="request thinking">
+    <rect x="460" y="60" width="300" height="240" rx="14" fill="#f3effa" stroke="#8b7bb8" stroke-width="1.5"/>
+    <text x="610" y="88" text-anchor="middle" font-size="18" font-weight="700" fill="#3b2f63">LLM</text>
+    <text x="610" y="106" text-anchor="middle" font-size="11" fill="#6a5d94">OpenAI-compatible server</text>
+  </g>
+
+  <g data-stages="thinking">
+    <rect x="478" y="125" width="125" height="150" rx="8" fill="#eeeeee" stroke="#aaaaaa" stroke-dasharray="5,4"/>
+    <text x="540" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#777777">③ Thinking</text>
+    <text x="540" y="178" text-anchor="middle" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#888888">reasoning_content</text>
+    <text x="540" y="212" text-anchor="middle" font-size="11" fill="#888888">scratchpad:</text>
+    <text x="540" y="228" text-anchor="middle" font-size="11" fill="#888888">show it,</text>
+    <text x="540" y="244" text-anchor="middle" font-size="11" fill="#888888">don't parse it</text>
+
+    <line x1="603" y1="200" x2="623" y2="200" stroke="#8b7bb8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+
+  <g data-stages="tool-call final-answer">
+    <rect x="625" y="125" width="120" height="150" rx="8" fill="#ffffff" stroke="#c2b6e0"/>
+    <text x="685" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#3b2f63">Output</text>
+    <g text-anchor="middle">
+      <text x="685" y="175" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#3b2f63">content</text>
+      <text x="685" y="189" font-size="10.5" fill="#6a5d94">text answer</text>
+      <text x="685" y="212" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#3b2f63">tool_calls</text>
+      <text x="685" y="226" font-size="10.5" fill="#6a5d94">name + args</text>
+      <text x="685" y="249" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#3b2f63">finish_reason</text>
+      <text x="685" y="263" font-size="10.5" fill="#6a5d94">stop | tool_calls</text>
+    </g>
+  </g>
+
+  <!-- Decision (agent) -->
+  <g data-stages="tool-call final-answer">
+    <text x="900" y="122" text-anchor="middle" font-size="11" font-weight="600" fill="#5f6b77" letter-spacing="1">AGENT</text>
+    <polygon points="900,135 970,180 900,225 830,180" fill="#f5f7fa" stroke="#4a5560" stroke-width="1.5"/>
+    <text x="900" y="184" text-anchor="middle" font-size="11.5" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#2f3a45">finish_reason?</text>
+  </g>
+
+  <!-- Final answer -->
+  <g data-stages="final-answer">
+    <rect x="1025" y="145" width="150" height="70" rx="10" fill="#e9f5ec" stroke="#5a9a6b" stroke-width="1.5"/>
+    <text x="1100" y="175" text-anchor="middle" font-size="13" font-weight="600" fill="#2c5e3a">⑥ Final answer</text>
+    <text x="1100" y="194" text-anchor="middle" font-size="11" fill="#2c5e3a">content → user</text>
+  </g>
+
+  <!-- Tools -->
+  <g data-stages="tool-call observation">
+    <rect x="480" y="360" width="460" height="80" rx="14" fill="#fdf4e7" stroke="#c99a4a" stroke-width="1.5"/>
+    <text x="710" y="384" text-anchor="middle" font-size="13" font-weight="600" fill="#7a5414">TOOLS: plain functions, JSON args in → text out</text>
+    <g font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#7a5414" text-anchor="middle">
+      <rect x="500" y="398" width="130" height="28" rx="14" fill="#ffffff" stroke="#e3c48e"/>
+      <text x="565" y="416">calculator</text>
+      <rect x="645" y="398" width="130" height="28" rx="14" fill="#ffffff" stroke="#e3c48e"/>
+      <text x="710" y="416">web_search</text>
+      <rect x="790" y="398" width="135" height="28" rx="14" fill="#ffffff" stroke="#e3c48e"/>
+      <text x="857" y="416">delegate → sub-agent</text>
+    </g>
+  </g>
+
+  <!-- ① question -->
+  <g data-stages="question">
+    <line x1="100" y1="180" x2="168" y2="180" stroke="#4a5560" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+    <text x="134" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#2f3a45">① question</text>
+  </g>
+
+  <!-- ② request -->
+  <g data-stages="request">
+    <line x1="340" y1="180" x2="458" y2="180" stroke="#4a5560" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+    <text x="400" y="170" text-anchor="middle" font-size="12" font-weight="600" fill="#2f3a45">② request</text>
+    <text x="400" y="200" text-anchor="middle" font-size="11" fill="#5f6b77">messages +</text>
+    <text x="400" y="214" text-anchor="middle" font-size="11" fill="#5f6b77">tool schemas</text>
+  </g>
+
+  <!-- response -->
+  <g data-stages="tool-call final-answer">
+    <line x1="760" y1="180" x2="828" y2="180" stroke="#4a5560" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+    <text x="795" y="170" text-anchor="middle" font-size="11" fill="#5f6b77">response</text>
+  </g>
+
+  <!-- ⑥ stop -->
+  <g data-stages="final-answer">
+    <line x1="970" y1="180" x2="1023" y2="180" stroke="#4a5560" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+    <text x="997" y="170" text-anchor="middle" font-size="12" font-weight="600" fill="#2c5e3a">⑥ stop</text>
+  </g>
+
+  <!-- ④ tool_calls -->
+  <g data-stages="tool-call">
+    <line x1="900" y1="225" x2="900" y2="358" stroke="#4a5560" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+    <text x="910" y="290" font-size="12" font-weight="600" fill="#2f3a45">④ tool_calls</text>
+    <text x="910" y="306" font-size="11" fill="#5f6b77">run each tool</text>
+  </g>
+
+  <!-- ⑤ observation, and the loop label -->
+  <g data-stages="observation">
+    <polyline points="480,400 255,400 255,292" stroke="#4a5560" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+    <text x="367" y="392" text-anchor="middle" font-size="12" font-weight="600" fill="#2f3a45">⑤ observation</text>
+    <text x="367" y="418" text-anchor="middle" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#5f6b77">role: tool</text>
+    <text x="375" y="335" text-anchor="middle" font-size="13" font-weight="600" fill="#5f6b77">↻ repeat ≤ max_steps</text>
+  </g>
+
+  <!-- Legend -->
+  <g font-size="11" fill="#5f6b77">
+    <rect x="170" y="468" width="14" height="14" rx="3" fill="#f5f7fa" stroke="#9aa5b1"/>
+    <text x="190" y="479">agent</text>
+    <rect x="310" y="468" width="14" height="14" rx="3" fill="#f3effa" stroke="#8b7bb8"/>
+    <text x="330" y="479">LLM: remote model</text>
+    <rect x="460" y="468" width="14" height="14" rx="3" fill="#fdf4e7" stroke="#c99a4a"/>
+    <text x="480" y="479">tools: run by the agent</text>
+  </g>
+</svg>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>agentic-loop-vaadin-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Agentic loop demo (Vaadin)</name>
+
+    <properties>
+        <!-- jinfer needs Java 25 (Vector API + FFM) -->
+        <java.version>25</java.version>
+        <vaadin.version>25.3.5</vaadin.version>
+        <jinfer.version>0.3.1</jinfer.version>
+        <!-- Required at runtime by jinfer: Vector API kernels and native kernels -->
+        <jinfer.jvm.args>--add-modules=jdk.incubator.vector --enable-native-access=ALL-UNNAMED</jinfer.jvm.args>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.qxotic</groupId>
+                <artifactId>jinfer-bom</artifactId>
+                <version>${jinfer.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- UI -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-dev</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Local, in-JVM inference with Quixotic jinfer (no Spring AI) -->
+        <dependency>
+            <groupId>com.qxotic</groupId>
+            <artifactId>jinfer-chat</artifactId>  <!-- ChatEngine, Message, Content, Tool -->
+        </dependency>
+        <dependency>
+            <groupId>com.qxotic</groupId>
+            <artifactId>jinfer-hub</artifactId>   <!-- ModelStore: downloads GGUF files from Hugging Face -->
+        </dependency>
+        <!-- Model architectures (each GGUF names its own; the matching module must be present) -->
+        <dependency>
+            <groupId>com.qxotic</groupId>
+            <artifactId>jinfer-lfm2</artifactId>   <!-- LFM2 / LFM2.5 (the default model) -->
+        </dependency>
+        <dependency>
+            <groupId>com.qxotic</groupId>
+            <artifactId>jinfer-llama</artifactId>  <!-- Granite, Llama, SmolLM3, MiniCPM -->
+        </dependency>
+        <dependency>
+            <groupId>com.qxotic</groupId>
+            <artifactId>jinfer-qwen35</artifactId> <!-- Qwen3.5, with thinking (jinfer-qwen3 is only the embedding family) -->
+        </dependency>
+        <!-- Compute backends; without them inference falls back to a very slow scalar path -->
+        <dependency>
+            <groupId>com.qxotic</groupId>
+            <artifactId>jam-native</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qxotic</groupId>
+            <artifactId>jam-vector</artifactId>
+        </dependency>
+
+        <!-- Only for showing the data in the familiar OpenAI JSON shape (managed by Spring Boot) -->
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <!-- The Architecture tab shows the same diagram as the README, served from docs/ -->
+            <resource>
+                <directory>docs</directory>
+                <includes>
+                    <include>agentic-loop.svg</include>
+                </includes>
+                <targetPath>META-INF/resources</targetPath>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>${jinfer.jvm.args}</jvmArguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
