@@ -11,6 +11,10 @@ server, …) are offered too; see [Models behind an API](#models-behind-an-api).
 
 ![The agentic loop](docs/agentic-loop.svg)
 
+Other write-ups call this loop Perceive → Reason → Act → Observe: here that's ② request →
+③ thinking and the response → ④ tool calls → ⑤ observation. There's no separate "reflect" step:
+the model reflects by reading the tool result in the next request.
+
 The demo after one question, with the **LLM settings** and **Agent settings** panels open
 (taken with the [scripted model](#where-things-are)):
 

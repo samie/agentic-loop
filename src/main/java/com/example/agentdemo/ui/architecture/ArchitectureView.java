@@ -22,7 +22,10 @@ public class ArchitectureView extends Composite<VerticalLayout> {
                 new Markdown("""
                         The **agent** is your code. It owns the conversation and the tools, and it runs \
                         the loop. The **LLM** only turns text into text. The **tools** are plain functions \
-                        that the agent runs when the model asks for them."""),
+                        that the agent runs when the model asks for them. Other write-ups call this \
+                        Perceive → Reason → Act → Observe; here that's ② → ③ and the response → ④ → ⑤. \
+                        There's no separate "reflect" step: the model reflects by reading the tool result \
+                        in the next request."""),
                 steps,
                 new Markdown("""
                         In this app the LLM is not an OpenAI-compatible server but a model running inside \
